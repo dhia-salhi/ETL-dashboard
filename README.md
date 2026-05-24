@@ -1,141 +1,89 @@
-# 📊 Business Analytics Dashboard
+# Business Analytics Dashboard
 
-An end-to-end **ETL pipeline + interactive analytics dashboard** built with Python.
-Extracts real e-commerce data from a public API, transforms it with pandas,
-stores it in SQLite, and visualises it with a beautiful Streamlit dashboard.
+An end-to-end ETL pipeline and interactive analytics dashboard built with Python. Pulls e-commerce data from a public API, transforms it with pandas, stores it in SQLite, and presents it through a Streamlit dashboard with Plotly visualisations.
 
 ---
 
-## 🚀 Live Demo
+## Features
 
-> Deploy to [Streamlit Community Cloud](https://streamlit.io/cloud) for free — see **Deployment** section below.
+- **KPI summary** — Revenue, estimated profit, orders, units sold, average rating, and discount
+- **Revenue by category** — Horizontal bar chart comparing product categories
+- **Daily revenue trend** — Line chart with 7-day rolling average
+- **Top 10 products** — Best-selling products ranked by revenue
+- **Price vs rating** — Scatter plot to identify high-value products
+- **Monthly revenue vs profit** — Grouped bar chart by month
+- **Revenue share** — Donut chart showing category breakdown
+- **Raw data table** — Filterable table with CSV export
 
----
-
-## 📸 What It Shows
-
-| Section | Description |
-|---|---|
-| **KPI Cards** | Total Revenue, Est. Profit, Orders, Units Sold, Avg Rating, Avg Discount |
-| **Revenue by Category** | Horizontal bar chart comparing categories |
-| **Daily Revenue Trend** | Line chart with 7-day rolling average |
-| **Top 10 Products** | Best-selling products by revenue |
-| **Price vs Rating** | Scatter plot to spot high-value products |
-| **Monthly Revenue vs Profit** | Grouped bar chart by month |
-| **Revenue Share** | Donut chart showing category breakdown |
-| **Raw Data Table** | Filterable + downloadable CSV export |
-
-**Interactive filters:**
-- 📂 Category multi-select
-- 📅 Date range picker
-- ⭐ Minimum product rating slider
+**Filters:** category, date range, minimum product rating
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Tool | Purpose |
 |---|---|
-| `Python 3.10+` | Programming language |
-| `requests` | Download data from the DummyJSON API |
-| `pandas` | Clean, reshape, and transform the data |
-| `sqlite3` | Store clean data in a local database |
-| `streamlit` | Build the interactive web dashboard |
-| `plotly` | Create beautiful interactive charts |
+| Python 3.10+ | Core language |
+| requests | Fetch data from the DummyJSON API |
+| pandas | Data cleaning and transformation |
+| sqlite3 | Local data storage |
+| Streamlit | Interactive dashboard |
+| Plotly | Charts and visualisations |
 
-**Data source:** [DummyJSON API](https://dummyjson.com/) — free, no API key needed
+Data source: [DummyJSON API](https://dummyjson.com/) — no API key required.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 etl-dashboard/
-│
-├── etl.py           # ETL pipeline: Extract → Transform → Load
+├── etl.py           # ETL pipeline
 ├── app.py           # Streamlit dashboard
-├── requirements.txt # Python dependencies
-├── README.md        # This file
-└── data.db          # SQLite database (auto-generated — do NOT commit this)
+├── requirements.txt # Dependencies
+└── README.md
 ```
 
 ---
 
-## ⚡ Quick Start (Run Locally)
+## Getting Started
 
-### 1. Install dependencies
 ```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### 2. Run the ETL pipeline (creates data.db)
-```bash
+# Run the ETL pipeline
 python etl.py
-```
-You should see:
-```
-✅ ETL COMPLETE! data.db is ready for the dashboard.
-```
 
-### 3. Launch the dashboard
-```bash
+# Launch the dashboard
 streamlit run app.py
 ```
-Your browser will automatically open at `http://localhost:8501` 🎉
+
+The dashboard runs at `http://localhost:8501`.
 
 ---
 
-## ☁️ Deploy to Streamlit Community Cloud (Free Hosting)
+## How It Works
 
-1. **Push to GitHub** (see next section)
-2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub
-3. Click **"New app"**
-4. Select your repository, branch (`main`), and set the **Main file** to `app.py`
-5. Click **"Deploy!"** — your app will be live in ~2 minutes
+The pipeline follows a standard ETL pattern:
 
-> ⚠️ **Important**: Before deploying, run `python etl.py` locally and commit `data.db`
-> to your GitHub repo — Streamlit Cloud needs it to load the dashboard.
+1. **Extract** — Fetches product and order data from the DummyJSON API
+2. **Transform** — Cleans and reshapes the data using pandas (column renaming, revenue/profit calculations, date parsing, null handling)
+3. **Load** — Writes the processed data to a local SQLite database (`data.db`)
+4. **Visualise** — Streamlit reads from the database and renders interactive Plotly charts
 
 ---
 
-## 📤 Push to GitHub
+## Deployment
 
-```bash
-# Step 1: Initialise git in the project folder
-git init
+To deploy on [Streamlit Community Cloud](https://streamlit.io/cloud):
 
-# Step 2: Add all files
-git add .
-
-# Step 3: Commit
-git commit -m "Initial commit: ETL pipeline + Streamlit dashboard"
-
-# Step 4: Connect to your GitHub repo (replace with your actual URL)
-git remote add origin https://github.com/YOUR_USERNAME/etl-dashboard.git
-
-# Step 5: Push
-git push -u origin main
-```
+1. Run `python etl.py` locally and commit `data.db` to your repository
+2. Push the project to GitHub
+3. Go to [share.streamlit.io](https://share.streamlit.io), connect your repo, set the main file to `app.py`, and deploy
 
 ---
 
-## 🧠 How It Works (ETL Explained for Beginners)
+## License
 
-**ETL** stands for **Extract, Transform, Load** — a standard data engineering pattern:
-
-| Phase | What happens |
-|---|---|
-| **Extract** | `requests.get()` downloads product & order data from the DummyJSON API as JSON |
-| **Transform** | `pandas` cleans the data: rename columns, calculate revenue/profit, fix dates, drop nulls |
-| **Load** | `sqlite3` saves the clean DataFrames as tables inside `data.db` |
-| **Visualise** | `streamlit` + `plotly` read from `data.db` and render interactive charts |
-
----
-
-## 📝 License
-
-MIT — free to use, modify, and share.
-
----
-
-*Built as a beginner-friendly portfolio project demonstrating ETL pipelines and data visualisation.*
+MIT
