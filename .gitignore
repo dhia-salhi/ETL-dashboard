@@ -1,0 +1,32 @@
+# .gitignore
+# ----------
+# Files listed here will NOT be uploaded to GitHub.
+# This keeps your repository clean and secure.
+
+# Python cache files (auto-generated, not needed on GitHub)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment folders (if you use one)
+venv/
+env/
+.venv/
+.env/
+
+# Environment variable files (keep secrets safe!)
+.env
+*.env
+
+# macOS junk files
+.DS_Store
+
+# Windows junk files
+Thumbs.db
+desktop.ini
+
+# NOTE: We ARE committing data.db to GitHub because Streamlit
+# Community Cloud needs it to load the dashboard.
+# In a real production project, you would NOT commit databases.

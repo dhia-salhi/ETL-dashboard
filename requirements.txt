@@ -1,0 +1,15 @@
+# requirements.txt
+# -----------------
+# This file lists all Python libraries that need to be installed
+# for this project to work.
+#
+# To install everything at once, run this command in your terminal:
+#   pip install -r requirements.txt
+#
+# NOTE: sqlite3, random, datetime are all BUILT INTO Python —
+# they don't need to be installed.
+
+pandas>=2.0.0        # data manipulation and analysis (the heart of the ETL pipeline)
+requests>=2.28.0     # making HTTP requests to download data from APIs
+streamlit>=1.35.0    # turns our Python script into an interactive web dashboard
+plotly>=5.18.0       # beautiful interactive charts used inside the dashboard
